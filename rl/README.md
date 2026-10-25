@@ -4,6 +4,12 @@ One goal-conditioned PPO policy controls all 52 ASCII letters. Training collects
 
 This is an initial PPO baseline. A running training process is not evidence that all letters have been solved. The first run uses seed 42 and a budget of **51,200,000 environment transitions**, aggregated across **200 live environments**. It has 50 CPU worker processes, four environments per worker, and one GPU learner. Physics remains on CPU.
 
+## First-run outcome
+
+The initial run was stopped early on 26 October 2026 (UTC+8), with 28,339,200 transitions last logged. All 12 fixed 52-case monitoring evaluations, from initialization through 28,160,000 transitions, had zero successes. The separate 520-case final test was not run. The latest saved weights are from 27,673,600 transitions; checkpoints, logs and plots are retained.
+
+A stationary-policy control over the 25% full / 75% curriculum reset mixture increased its undiscounted episode return from −27.04 to −19.55 as difficulty increased, without succeeding. This exposes a comparability problem in the training-return curve; it does not prove that the discounted PPO objective rewards moving away. Action standard deviation also contracted to about 0.06, and difficulty increased on a fixed schedule despite poor success. The settings below reproduce this unsuccessful baseline, not a validated solution.
+
 ## Task and state
 
 Goals stay at (320, 320). At every reset the letter is sampled uniformly from A–Z/a–z and the goal angle continuously from [0, 2π). Full-distribution resets sample the object position across its feasible arena region, its angle uniformly, and a separated pusher position. The complete rotated glyph stays at least 48 pixels inside the inner wall; the pusher starts at least 20 pixels from the glyph surface and inside [44, 596]².
