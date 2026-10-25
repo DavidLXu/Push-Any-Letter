@@ -71,7 +71,7 @@ OPENBLAS_NUM_THREADS=1 python -m push_any_letter.batch \
   --block-friction 1.4 --workers 8
 ```
 
-Choose the worker count for your machine. The published run used 128 CPU workers, seed 20261026, 20 candidate contacts, up to 40 planning iterations and 2,400 control steps per attempt. It accepted 6,240 of 6,269 attempts. Every accepted trajectory was independently replayed from its reset state using only its recorded actions; the exporter preserves the validation metadata. A contact-aware model-predictive planner supplies privileged simulation access. These are successful planner demonstrations, not human demonstrations or optimal paths.
+Choose the worker count for your machine. The published run used 128 CPU workers, seed 20261026, 20 candidate contacts, up to 40 planning iterations and 2,400 control steps per attempt. It accepted 6,240 of 6,269 attempts. The portable release can be exported from a completed generation directory with `python examples/export_public_dataset.py datasets/generated release-data`. Every accepted trajectory was independently replayed from its reset state using only its recorded actions; the exporter preserves the validation metadata. A contact-aware model-predictive planner supplies privileged simulation access. These are successful planner demonstrations, not human demonstrations or optimal paths.
 
 ## Train and evaluate
 
