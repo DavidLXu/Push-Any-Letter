@@ -1,0 +1,50 @@
+{
+  "arena_size": [
+    640,
+    640
+  ],
+  "center_x": [
+    320
+  ],
+  "center_y": [
+    320
+  ],
+  "angles_degrees": [
+    0,
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300,
+    330
+  ],
+  "letters": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+  "trajectories_per_goal": 10,
+  "goal_states": 624,
+  "requested_successful_trajectories": 6240,
+  "coordinate_convention": "pixels; x right, y down; angles clockwise",
+  "initial_state_spec": {
+    "object_angle": "uniform [0, 2*pi)",
+    "object_position": "uniform over the valid center rectangle for the sampled rotated glyph",
+    "minimum_glyph_to_inner_wall_clearance_px": 48,
+    "inner_wall_bounds": [
+      12,
+      12,
+      628,
+      628
+    ],
+    "reject_initial_success": true,
+    "pusher": "collision-free position with wall clearance; no initial overlap with glyph",
+    "diversity": "different initial states and planner sampling seeds; check for duplicate trajectories"
+  },
+  "geometry_validation": {
+    "checked_goal_states": 624,
+    "minimum_target_glyph_to_inner_wall_clearance_px": 195.48269909871453
+  },
+  "status": "Implemented in push_any_letter.batch; reset metadata supports independent action replay."
+}
