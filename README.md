@@ -1,6 +1,6 @@
 # Push Any Letter
 
-A macOS-compatible 2D pushing simulator for letter-shaped rigid bodies, with a Gymnasium API, a contact-sampling planner, and state/image imitation-learning baselines.
+A macOS-compatible 2D pushing simulator for letter-shaped rigid bodies, with a Gymnasium API, a contact-sampling planner, and state/image imitation-learning baselines, and online PPO training.
 
 The public dataset contains **6,240 replay-validated successful demonstrations**: 52 ASCII letters × 12 goal orientations × 10 trajectories. Every goal is at the arena center. Different starting poses and planner seeds produce different solutions to the same goal.
 
@@ -15,10 +15,10 @@ The public dataset contains **6,240 replay-validated successful demonstrations**
 Push Any Letter expands the object distribution beyond a single T-shaped body to study how contact geometry and target orientation affect learning. The balanced dataset supports comparisons across **letters, angles, and different successful solutions to the same goal**, rather than only one aggregate score.
 
 - **Imitation learning:** learn from successful planner demonstrations and compare state/image policies on familiar and unseen goal orientations.
-- **Reinforcement learning:** use the Gymnasium environment for online interaction or demonstration-initialized fine-tuning; RL baselines and protocols are future work.
+- **Reinforcement learning:** train one online PPO policy for all 52 letters and continuously sampled goal angles, using a shared geometry-based reward and 200 parallel environments. No demonstration dataset is loaded; see the [RL protocol](rl/README.md).
 - **World-model evaluation:** use recorded state–action transitions and RGB sequences to study multi-step dynamics prediction and model-based planning; dedicated world-model splits and metrics are future work.
 
-The current release covers center goals, 52 ASCII letters, and 12 goal angles. Broader goal positions, fonts, held-out letter splits, and new RL/world-model evaluations require additional data or experiments. See the [project page](https://DavidLXu.github.io/Push-Any-Letter/) for coverage and evaluation scope.
+The current release covers center goals, 52 ASCII letters, and 12 goal angles. Broader goal positions, fonts, held-out letter splits, and evaluations beyond these scopes require additional data or experiments. See the [project page](https://DavidLXu.github.io/Push-Any-Letter/) for coverage and evaluation scope.
 
 ## Run on macOS
 

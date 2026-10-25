@@ -18,6 +18,7 @@ dependencies = [
 
 [project.optional-dependencies]
 train = ["torch>=2.8,<3", "matplotlib>=3.8,<4", "huggingface_hub>=0.35,<2"]
+rl = ["stable-baselines3==2.7.0", "tensorboard>=2.14,<3", "matplotlib>=3.8,<4"]
 data = ["huggingface_hub>=0.35,<2"]
 test = ["pytest>=8,<9"]
 
@@ -25,7 +26,7 @@ test = ["pytest>=8,<9"]
 push-any-letter = "push_any_letter.app:main"
 
 [tool.setuptools.packages.find]
-include = ["push_any_letter*", "training*"]
+include = ["push_any_letter*", "training*", "rl*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
