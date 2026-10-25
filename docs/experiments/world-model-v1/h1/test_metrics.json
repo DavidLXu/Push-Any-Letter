@@ -1,0 +1,77 @@
+{
+  "checkpoint_step": 28000,
+  "metrics": {
+    "1": {
+      "all": {
+        "n": 1246,
+        "object_position_px": 0.43099382519721985,
+        "object_angle_deg": 0.15331175923347473,
+        "pusher_position_px": 0.6223687529563904,
+        "persistence_object_px": 0.33247891068458557,
+        "persistence_angle_deg": 0.14191605150699615
+      },
+      "moving": {
+        "n": 91,
+        "object_position_px": 1.5619930028915405,
+        "object_angle_deg": 0.6505122780799866,
+        "pusher_position_px": 0.8998766541481018,
+        "persistence_object_px": 3.2917559146881104,
+        "persistence_angle_deg": 1.3750455379486084
+      }
+    },
+    "10": {
+      "all": {
+        "n": 1246,
+        "object_position_px": 3.3886044025421143,
+        "object_angle_deg": 1.3159066438674927,
+        "pusher_position_px": 2.30057954788208,
+        "persistence_object_px": 3.172302484512329,
+        "persistence_angle_deg": 1.3261115550994873
+      },
+      "moving": {
+        "n": 251,
+        "object_position_px": 8.173294067382812,
+        "object_angle_deg": 3.94124174118042,
+        "pusher_position_px": 1.7250219583511353,
+        "persistence_object_px": 15.247232437133789,
+        "persistence_angle_deg": 6.336942195892334
+      }
+    },
+    "50": {
+      "all": {
+        "n": 1245,
+        "object_position_px": 13.685981750488281,
+        "object_angle_deg": 5.392148971557617,
+        "pusher_position_px": 0.8834896683692932,
+        "persistence_object_px": 22.725482940673828,
+        "persistence_angle_deg": 8.397336959838867
+      },
+      "moving": {
+        "n": 590,
+        "object_position_px": 22.64905548095703,
+        "object_angle_deg": 9.328612327575684,
+        "pusher_position_px": 1.074489951133728,
+        "persistence_object_px": 47.82394027709961,
+        "persistence_angle_deg": 17.654064178466797
+      }
+    },
+    "100": {
+      "all": {
+        "n": 1245,
+        "object_position_px": 25.49791145324707,
+        "object_angle_deg": 10.65764331817627,
+        "pusher_position_px": 1.2206969261169434,
+        "persistence_object_px": 46.460697174072266,
+        "persistence_angle_deg": 18.012544631958008
+      },
+      "moving": {
+        "n": 920,
+        "object_position_px": 30.764493942260742,
+        "object_angle_deg": 13.473536491394043,
+        "pusher_position_px": 1.2510324716567993,
+        "persistence_object_px": 62.853851318359375,
+        "persistence_angle_deg": 24.36750030517578
+      }
+    }
+  }
+}

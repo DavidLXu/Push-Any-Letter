@@ -1,0 +1,14 @@
+{
+  "history": 1,
+  "steps": 30000,
+  "batch": 1024,
+  "eval_every": 2000,
+  "seed": 42,
+  "parameters": 141125,
+  "inputs": "state first 5 columns only; sin/cos angle; letter identity; prior actions + current action; no target/velocity",
+  "split": "slots0-7 train,8 val,9 test; same windows and random seeds",
+  "objective": "one-step MSE; every fourth update add 0.25 * five-step autoregressive loss",
+  "dt": 0.05,
+  "selection": "minimum validation horizon50 object_px/10 + angle_deg/10",
+  "gpu": "NVIDIA GeForce RTX 5090"
+}
