@@ -4,9 +4,21 @@ A macOS-compatible 2D pushing simulator for letter-shaped rigid bodies, with a G
 
 The public dataset contains **6,240 replay-validated successful demonstrations**: 52 ASCII letters × 12 goal orientations × 10 trajectories. Every goal is at the arena center. Different starting poses and planner seeds produce different solutions to the same goal.
 
-[Dataset on Hugging Face](https://huggingface.co/datasets/DavidLXu/Push-Any-Letter) · [Training protocol](docs/training.md) · [中文环境说明](docs/environment-zh.md) · [Citation](CITATION.bib)
+[Project page](https://DavidLXu.github.io/Push-Any-Letter/) · [Dataset on Hugging Face](https://huggingface.co/datasets/DavidLXu/Push-Any-Letter) · [Training protocol](docs/training.md) · [中文环境说明](docs/environment-zh.md) · [Citation](CITATION.bib)
 
-![Simulator preview](assets/preview.png)
+[![Push Any Letter teaser](docs/media/teaser.gif)](https://DavidLXu.github.io/Push-Any-Letter/)
+
+[Watch / download the MP4 teaser](docs/media/teaser.mp4) · 1.5× edit, ending at 1,560 visible arenas. Recorded trajectories are time-normalized for visualization.
+
+## Why more letters?
+
+Push Any Letter expands the object distribution beyond a single T-shaped body to study how contact geometry and target orientation affect learning. The balanced dataset supports comparisons across **letters, angles, and different successful solutions to the same goal**, rather than only one aggregate score.
+
+- **Imitation learning:** learn from successful planner demonstrations and compare state/image policies on familiar and unseen goal orientations.
+- **Reinforcement learning:** use the Gymnasium environment for online interaction or demonstration-initialized fine-tuning; RL baselines and protocols are future work.
+- **World-model evaluation:** use recorded state–action transitions and RGB sequences to study multi-step dynamics prediction and model-based planning; dedicated world-model splits and metrics are future work.
+
+The current release covers center goals, 52 ASCII letters, and 12 goal angles. Broader goal positions, fonts, held-out letter splits, and new RL/world-model evaluations require additional data or experiments. See the [project page](https://DavidLXu.github.io/Push-Any-Letter/) for coverage and evaluation scope.
 
 ## Run on macOS
 
