@@ -68,3 +68,13 @@ Artifacts in the run directory:
 Tests cover all 52 glyphs' reset safety, seeded dynamics, potential telescoping and the absorbing-success boundary, grouped/serial rollout equivalence, and time-limit bootstrap observations.
 
 Sources: [PPO, Schulman et al. (2017)](https://arxiv.org/abs/1707.06347), [Stable-Baselines3 PPO](https://stable-baselines3.readthedocs.io/en/v2.7.0/modules/ppo.html), [potential-based reward shaping, Ng et al. (1999)](https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/NgHaradaRussell-shaping-ICML1999.pdf).
+
+## Save live reward and success plots
+
+The learner continuously records shaped episode return in `progress.csv` and TensorBoard, and rolling success in `metrics.jsonl`. An independent CPU watcher can refresh persistent curves every 30 seconds while training continues:
+
+```bash
+python -m rl.live_curves --run runs/ppo_online_52letters_seed42 --interval 30
+```
+
+This watcher only reads training logs. It saves `live_curves/reward_success.png` and `.pdf`, plus `reward_history.csv` and `success_history.csv`. Raw learner logs retain the full history. Reward is the mean shaped return over the latest 100 completed episodes; training success uses the latest 1,000, with full-reset episodes separately labeled. Only completed independent evaluations are plotted. Curriculum progress can change training returns, so reward is not a substitute for held-out success. `curve_service_status.json` reports freshness or errors, a lock prevents duplicate watchers, and the watcher renders once more then exits when training completes or fails.
