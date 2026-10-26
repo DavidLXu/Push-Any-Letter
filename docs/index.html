@@ -75,8 +75,8 @@ python -m push_any_letter.app --letter Q</code></pre><p class="note">Exact physi
 <a href="experiments/loss-history.csv" download>Raw loss · CSV ↓</a>
 <a href="experiments/success-history.csv" download>Success curves · CSV ↓</a>
 <a href="https://huggingface.co/datasets/DavidLXu/Push-Any-Letter/tree/8c02168906f991bc07ee3648bee6290babf13e47">V1 dataset ↗</a></p>
-<div class="act-rollouts" id="act-rollouts">
-<div class="results-heading"><div><span class="tag">V1 · ACT · State</span><h4>Three successes. Three failures.</h4></div><span class="tag">ACT · State · 100k</span></div>
+<div class="act-rollouts" id="act-rollouts" data-version="v1" data-source="experiments/act-episodes.json">
+<div class="results-heading"><div><span class="tag">V1 · ACT · State</span><h4>Success and failure cases</h4></div><span class="tag">ACT · State · 100k</span></div>
 <p class="note">T, S, a · unseen goal angles · recorded trajectories.</p>
 <div class="rollout-controls"><button type="button" id="act-play" disabled>Play</button><button type="button" id="act-restart" disabled>Restart</button><label>Speed <select id="act-speed" aria-label="ACT playback speed"><option value="1">1×</option><option value="2">2×</option><option value="4" selected>4×</option></select></label><label><input type="checkbox" id="act-pusher-trail" checked> Pusher history</label><label><input type="checkbox" id="act-object-trail"> Object-center history</label></div>
 <div class="rollout-key"><span><i class="key-object"></i>Object</span><span><i class="key-goal"></i>Target</span><span><i class="key-pusher"></i>Pusher path</span><span><i class="key-center"></i>Object-center path (optional)</span></div>
@@ -129,6 +129,17 @@ python -m push_any_letter.app --letter Q</code></pre><p class="note">Exact physi
 <a href="experiments/loss-history-v2.csv" download>Raw loss · CSV ↓</a>
 <a href="experiments/success-history-v2.csv" download>Success curves · CSV ↓</a>
 <a href="https://huggingface.co/datasets/DavidLXu/Push-Any-Letter/tree/422f2eaadc6c76bf6451706da1d046b50ea1e9d8">V2 dataset ↗</a></p>
+<div class="act-rollouts" id="v2-act-rollouts" data-version="v2" data-source="experiments/act-episodes-v2.json">
+<div class="results-heading"><div><span class="tag">V2 · ACT · State</span><h4>Success and failure cases</h4></div><span class="tag">ACT · State · 100k</span></div>
+<p class="note">T, A, a · unseen goal angles · recorded trajectories.</p>
+<div class="rollout-controls"><button type="button" id="v2-act-play" disabled>Play</button><button type="button" id="v2-act-restart" disabled>Restart</button><label>Speed <select id="v2-act-speed" aria-label="ACT playback speed"><option value="1">1×</option><option value="2">2×</option><option value="4" selected>4×</option></select></label><label><input type="checkbox" id="v2-act-pusher-trail" checked> Pusher history</label><label><input type="checkbox" id="v2-act-object-trail"> Object-center history</label></div>
+<div class="rollout-key"><span><i class="key-object"></i>Object</span><span><i class="key-goal"></i>Target</span><span><i class="key-pusher"></i>Pusher path</span><span><i class="key-center"></i>Object-center path (optional)</span></div>
+<div class="rollout-timeline"><label for="v2-act-progress">Shared simulation time</label><output id="v2-act-time">0.0 / 120.0 s</output><input id="v2-act-progress" type="range" min="0" max="2400" step="1" value="0" disabled aria-label="ACT episode playback step"></div>
+<p id="v2-act-load-status" class="note" role="status">Recorded episodes load when this report opens.</p>
+<div class="rollout-group-title"><h5>Successful episodes</h5><span>95% coverage reached</span></div><div id="v2-act-success-grid" class="rollout-grid"></div>
+<div class="rollout-group-title"><h5>Failed episodes</h5><span>2,400-step time limit</span></div><div id="v2-act-failure-grid" class="rollout-grid"></div>
+<p class="report-downloads"><a href="experiments/act-episodes-v2.json" download>Six recorded episodes · JSON ↓</a></p>
+</div>
 </div>
 <p class="note">Methods: <a href="https://diffusion-policy.cs.columbia.edu/">Diffusion Policy</a> · <a href="https://arxiv.org/abs/2210.02747">Flow Matching</a> · <a href="https://tonyzhaozh.github.io/aloha/">ACT</a>. <a href="https://davidlxu.github.io/posts/2026/10/push-any-letter-imitation-learning/">V1 technical report ↗</a></p></div></details>
 
@@ -172,7 +183,7 @@ r = 20 · success − 0.01 − 0.001 ‖a‖²
 </div>
 <script src="replay.js?v=continuous" defer></script>
 <script src="reports.js?v=12" defer></script>
-<script src="act-rollouts.js?v=2" defer></script>
+<script src="act-rollouts.js?v=3" defer></script>
 <script src="world-models.js?v=1" defer></script>
 <script>function openLinkedReport(){const el=document.getElementById(location.hash.slice(1));if(el?.matches("details.experiment"))el.open=true;}addEventListener("hashchange",openLinkedReport);openLinkedReport();</script>
 <script defer src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js"></script>

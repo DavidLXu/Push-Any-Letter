@@ -1,9 +1,11 @@
 /* Six ACT evaluation rollouts: recorded states, not simulated policy actions. */
 (() => {
  'use strict';
- const root=document.getElementById('act-rollouts'),report=document.getElementById('imitation-learning');
- const play=document.getElementById('act-play'),restart=document.getElementById('act-restart'),slider=document.getElementById('act-progress'),speed=document.getElementById('act-speed');
- const pusherTrail=document.getElementById('act-pusher-trail'),objectTrail=document.getElementById('act-object-trail'),status=document.getElementById('act-load-status');
+ document.querySelectorAll('#imitation-learning .act-rollouts[data-source]').forEach(root=>{
+ const report=document.getElementById('imitation-learning'),panel=root.closest('.il-panel');
+ const get=id=>document.getElementById(root.dataset.version==='v2'?`v2-${id}`:id);
+ const play=get('act-play'),restart=get('act-restart'),slider=get('act-progress'),speed=get('act-speed');
+ const pusherTrail=get('act-pusher-trail'),objectTrail=get('act-object-trail'),status=get('act-load-status');
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  let data,loading=false,cards=[],step=0,playing=false,visible=false,last=0,raf=0,autoplayed=false;
  function glyph(ctx,rings,pose,fill,stroke){
@@ -20,7 +22,7 @@
  }
  function render(){
   if(!data)return;
-  slider.value=Math.floor(step);document.getElementById('act-time').value=`${(step/20).toFixed(1)} / 120.0 s`;
+  slider.value=Math.floor(step);get('act-time').value=`${(step/20).toFixed(1)} / 120.0 s`;
   for(const c of cards){
    const ep=c.ep,position=Math.min(step,ep.steps),i=Math.floor(position),j=Math.min(i+1,ep.steps),f=position-i;
    const a=ep.states[i],b=ep.states[j],s=a.map((v,k)=>v+(b[k]-v)*f);
@@ -45,7 +47,7 @@
   const canvas=document.createElement('canvas');canvas.width=canvas.height=640;canvas.setAttribute('role','img');canvas.setAttribute('aria-label',`ACT ${ep.letter}: ${ep.success?'successful':'failed'} test episode, goal ${ep.angle.toFixed(1)} degrees`);
   const caption=document.createElement('figcaption'),steps=document.createElement('span'),coverage=document.createElement('span');caption.append(steps,coverage);
   const outcome=document.createElement('p');outcome.className='rollout-outcome';figure.append(header,canvas,caption,outcome);
-  document.getElementById(ep.success?'act-success-grid':'act-failure-grid').append(figure);
+  get(ep.success?'act-success-grid':'act-failure-grid').append(figure);
   const backdrop=document.createElement('canvas');backdrop.width=backdrop.height=640;const bg=backdrop.getContext('2d');
   bg.fillStyle='#f1f4ef';bg.fillRect(0,0,640,640);bg.fillStyle='#d8e0d8';
   for(let x=30;x<630;x+=24)for(let y=30;y<630;y+=24){bg.beginPath();bg.arc(x,y,1,0,Math.PI*2);bg.fill();}
@@ -54,16 +56,16 @@
  }
  function stop(){playing=false;cancelAnimationFrame(raf);raf=0;last=0;play.textContent='Play';}
  function tick(now){
-  if(!playing||!visible||!report.open||document.hidden){raf=0;last=0;return;}
+  if(!playing||!visible||!report.open||panel.hidden||document.hidden){raf=0;last=0;return;}
   const delta=last?Math.min((now-last)/1000,.1):0;last=now;step=Math.min(2400,step+delta*20*Number(speed.value));render();
   if(step>=2400)stop();else raf=requestAnimationFrame(tick);
  }
- function resume(){if(playing&&visible&&report.open&&!document.hidden&&!raf){last=0;raf=requestAnimationFrame(tick);}}
+ function resume(){if(playing&&visible&&report.open&&!panel.hidden&&!document.hidden&&!raf){last=0;raf=requestAnimationFrame(tick);}}
  function start(){if(step>=2400)step=0;playing=true;play.textContent='Pause';resume();}
- function auto(){if(data&&visible&&report.open&&!autoplayed){autoplayed=true;if(!reduced.matches)start();}}
+ function auto(){if(data&&visible&&report.open&&!panel.hidden&&!autoplayed){autoplayed=true;if(!reduced.matches)start();}}
  async function load(){
   if(data||loading)return;loading=true;
-  try{const r=await fetch('experiments/act-episodes.json');if(!r.ok)throw Error(r.status);const next=await r.json();
+  try{const r=await fetch(root.dataset.source);if(!r.ok)throw Error(r.status);const next=await r.json();
    if(next.episodes.length!==6||next.episodes.some(e=>e.states.length!==e.steps+1||e.coverage.length!==e.states.length))throw Error('Invalid recorded episode data');
    data=next;cards=data.episodes.map(card);play.disabled=restart.disabled=slider.disabled=false;
    status.textContent='';status.hidden=true;render();auto();
@@ -73,10 +75,11 @@
  restart.addEventListener('click',()=>{step=0;render();start();});
  slider.addEventListener('input',()=>{stop();step=Number(slider.value);render();});
  pusherTrail.addEventListener('change',render);objectTrail.addEventListener('change',render);
- report.addEventListener('il-version-change',()=>stop());
- report.addEventListener('toggle',()=>{if(report.open){load();resume();auto();}else{cancelAnimationFrame(raf);raf=0;last=0;}});
+ report.addEventListener('il-version-change',()=>{stop();if(!panel.hidden)load();});
+ report.addEventListener('toggle',()=>{if(report.open&&!panel.hidden){load();resume();auto();}else{cancelAnimationFrame(raf);raf=0;last=0;}});
  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(!visible){cancelAnimationFrame(raf);raf=0;last=0;}else{auto();resume();}},{threshold:0}).observe(root);
  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);raf=0;last=0;}else resume();});
  reduced.addEventListener('change',()=>{if(reduced.matches)stop();});
- if(report.open)load();
+ if(report.open&&!panel.hidden)load();
+ });
 })();
