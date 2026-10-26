@@ -83,9 +83,10 @@
         data = Object.fromEntries(modes.map((mode,i)=>[mode,loaded[i]]));
         buildCharts();
         slider.disabled=play.disabled=final.disabled=false;draw(100000);
-        message.textContent='State + image · recorded measurements · one seed · drag the shared timeline or replay all six curves.';
+        message.textContent='';
+        message.hidden=true;
         maybeAnimate();
-      } catch(error) {message.textContent='Interactive curves could not load. Use the recorded metrics and PDF downloads below.';loading=null;}
+      } catch(error) {message.hidden=false;message.textContent='Interactive curves could not load. Use the recorded metrics and PDF downloads below.';loading=null;}
     })();return loading;
   }
   report.addEventListener('toggle',()=>{if(report.open){load();maybeAnimate();}else stop();});
