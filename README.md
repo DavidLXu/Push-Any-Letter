@@ -2,9 +2,9 @@
 
 A macOS-compatible 2D pushing simulator for letter-shaped rigid bodies, with a Gymnasium API, a contact-sampling planner, and state/image imitation-learning baselines, and online PPO training.
 
-The public dataset contains **6,240 replay-validated successful demonstrations**: 52 ASCII letters × 12 goal orientations × 10 trajectories. Every goal is at the arena center. Different starting poses and planner seeds produce different solutions to the same goal.
+The **V1 benchmark dataset** contains **6,240 replay-validated successful demonstrations**: 52 ASCII letters × 12 goal orientations × 10 trajectories. Every goal is at the arena center. Different starting poses and planner seeds produce different solutions to the same goal.
 
-[Project page](https://DavidLXu.github.io/Push-Any-Letter/) · [Dataset on Hugging Face](https://huggingface.co/datasets/DavidLXu/Push-Any-Letter) · [Training protocol](docs/training.md) · [中文环境说明](docs/environment-zh.md) · [Citation](CITATION.bib)
+[Project page](https://DavidLXu.github.io/Push-Any-Letter/) · [Dataset on Hugging Face](https://huggingface.co/datasets/DavidLXu/Push-Any-Letter) · [Final V1 technical report](https://davidlxu.github.io/posts/2026/10/push-any-letter-imitation-learning/) · [Training protocol](docs/training.md) · [中文环境说明](docs/environment-zh.md) · [Citation](CITATION.bib)
 
 [![Push Any Letter teaser](docs/media/teaser.gif)](https://DavidLXu.github.io/Push-Any-Letter/)
 
@@ -91,7 +91,9 @@ Four implementations are provided: vanilla MLP behavior cloning, a conditional d
 
 Training uses all ten demonstrations for every letter/orientation. Evaluation uses ten fixed unseen orientations and fresh starts across all 52 letters (520 episodes), with a 95% geometric coverage threshold. Periodic curves evaluate 52 fixed training starts and 52 fixed unseen-angle starts. Final checkpoints are fixed in advance; test curves are for monitoring.
 
-This release provides code and demonstrations. The first full state/image comparison is still running; no learned-policy success rate is claimed here. The four implementations are task-specific adaptations, not exact reproductions of the original papers. Center-only goal training does not establish generalization to arbitrary goal positions, new fonts, or unseen characters.
+The [completed V1 technical report](https://davidlxu.github.io/posts/2026/10/push-any-letter-imitation-learning/) compares all eight final EMA policies at 100,000 updates with training seed 42. On the same 520 unseen-angle tasks, state BC / Diffusion / Flow / ACT succeed in **0 / 33 / 25 / 319** cases; image policies succeed in **5 / 191 / 226 / 227**. Image ACT and Flow differ by one case, which does not establish a reliable ranking from one seed. The report includes loss histories, separate 52-case training/test success curves, replayed examples and downloadable results.
+
+These runs use all ten V1 demonstrations per condition. Pin dataset revision `v1` (commit `8c02168906f991bc07ee3648bee6290babf13e47`) to reproduce them; the Hugging Face default branch now contains V2 with 100 demonstrations per condition. The four implementations are task-specific adaptations, not exact reproductions of the original papers. Center-only goal training does not establish generalization to arbitrary goal positions, new fonts, or unseen characters.
 
 ## Tests
 
