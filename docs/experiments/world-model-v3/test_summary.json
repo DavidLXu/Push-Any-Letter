@@ -1,0 +1,310 @@
+{
+  "mlp1": {
+    "checkpoint_step": 90000,
+    "metrics": {
+      "1": {
+        "all": {
+          "n": 24895,
+          "object_position_px": 0.3640802204608917,
+          "object_angle_deg": 0.13409730792045593,
+          "pusher_position_px": 0.5090234875679016,
+          "persistence_object_px": 0.3209333121776581,
+          "persistence_angle_deg": 0.13076919317245483
+        },
+        "moving": {
+          "n": 1592,
+          "object_position_px": 1.3645350933074951,
+          "object_angle_deg": 0.5341910123825073,
+          "pusher_position_px": 0.8602455854415894,
+          "persistence_object_px": 3.4358112812042236,
+          "persistence_angle_deg": 1.2847282886505127
+        }
+      },
+      "10": {
+        "all": {
+          "n": 24895,
+          "object_position_px": 2.95166015625,
+          "object_angle_deg": 1.114341378211975,
+          "pusher_position_px": 1.7107383012771606,
+          "persistence_object_px": 3.2849981784820557,
+          "persistence_angle_deg": 1.3286070823669434
+        },
+        "moving": {
+          "n": 5170,
+          "object_position_px": 7.342843055725098,
+          "object_angle_deg": 3.4657771587371826,
+          "pusher_position_px": 1.3495488166809082,
+          "persistence_object_px": 15.378762245178223,
+          "persistence_angle_deg": 6.1831865310668945
+        }
+      },
+      "50": {
+        "all": {
+          "n": 24874,
+          "object_position_px": 12.688577651977539,
+          "object_angle_deg": 5.161988258361816,
+          "pusher_position_px": 0.7628996968269348,
+          "persistence_object_px": 22.498088836669922,
+          "persistence_angle_deg": 8.41796588897705
+        },
+        "moving": {
+          "n": 11621,
+          "object_position_px": 21.687217712402344,
+          "object_angle_deg": 9.357552528381348,
+          "pusher_position_px": 0.9330172538757324,
+          "persistence_object_px": 48.02605056762695,
+          "persistence_angle_deg": 17.957408905029297
+        }
+      },
+      "100": {
+        "all": {
+          "n": 24836,
+          "object_position_px": 24.33037757873535,
+          "object_angle_deg": 9.733530044555664,
+          "pusher_position_px": 1.0913602113723755,
+          "persistence_object_px": 44.93593978881836,
+          "persistence_angle_deg": 17.007402420043945
+        },
+        "moving": {
+          "n": 17907,
+          "object_position_px": 30.535579681396484,
+          "object_angle_deg": 12.647078514099121,
+          "pusher_position_px": 1.1236624717712402,
+          "persistence_object_px": 62.304283142089844,
+          "persistence_angle_deg": 23.58057975769043
+        }
+      }
+    }
+  },
+  "mlp4": {
+    "checkpoint_step": 100000,
+    "metrics": {
+      "1": {
+        "all": {
+          "n": 24895,
+          "object_position_px": 0.16850405931472778,
+          "object_angle_deg": 0.11318586021661758,
+          "pusher_position_px": 0.22846604883670807,
+          "persistence_object_px": 0.3209333121776581,
+          "persistence_angle_deg": 0.13076919317245483
+        },
+        "moving": {
+          "n": 1592,
+          "object_position_px": 0.41008761525154114,
+          "object_angle_deg": 0.41512149572372437,
+          "pusher_position_px": 0.42882663011550903,
+          "persistence_object_px": 3.4358112812042236,
+          "persistence_angle_deg": 1.2847282886505127
+        }
+      },
+      "10": {
+        "all": {
+          "n": 24895,
+          "object_position_px": 2.655541181564331,
+          "object_angle_deg": 1.2773455381393433,
+          "pusher_position_px": 0.7915045022964478,
+          "persistence_object_px": 3.2849981784820557,
+          "persistence_angle_deg": 1.3286070823669434
+        },
+        "moving": {
+          "n": 5170,
+          "object_position_px": 4.687305450439453,
+          "object_angle_deg": 2.5870954990386963,
+          "pusher_position_px": 0.7575197219848633,
+          "persistence_object_px": 15.378762245178223,
+          "persistence_angle_deg": 6.1831865310668945
+        }
+      },
+      "50": {
+        "all": {
+          "n": 24874,
+          "object_position_px": 13.671069145202637,
+          "object_angle_deg": 6.483420372009277,
+          "pusher_position_px": 0.4029465317726135,
+          "persistence_object_px": 22.498088836669922,
+          "persistence_angle_deg": 8.41796588897705
+        },
+        "moving": {
+          "n": 11621,
+          "object_position_px": 18.9234619140625,
+          "object_angle_deg": 8.639365196228027,
+          "pusher_position_px": 0.46660250425338745,
+          "persistence_object_px": 48.02605056762695,
+          "persistence_angle_deg": 17.957408905029297
+        }
+      },
+      "100": {
+        "all": {
+          "n": 24836,
+          "object_position_px": 26.65194320678711,
+          "object_angle_deg": 12.185185432434082,
+          "pusher_position_px": 0.6302425265312195,
+          "persistence_object_px": 44.93593978881836,
+          "persistence_angle_deg": 17.007402420043945
+        },
+        "moving": {
+          "n": 17907,
+          "object_position_px": 29.737634658813477,
+          "object_angle_deg": 13.827357292175293,
+          "pusher_position_px": 0.6150668263435364,
+          "persistence_object_px": 62.304283142089844,
+          "persistence_angle_deg": 23.58057975769043
+        }
+      }
+    }
+  },
+  "gru4": {
+    "checkpoint_step": 100000,
+    "metrics": {
+      "1": {
+        "all": {
+          "n": 24895,
+          "object_position_px": 0.15631447732448578,
+          "object_angle_deg": 0.08315891772508621,
+          "pusher_position_px": 0.23758183419704437,
+          "persistence_object_px": 0.3209333121776581,
+          "persistence_angle_deg": 0.13076919317245483
+        },
+        "moving": {
+          "n": 1592,
+          "object_position_px": 0.32893458008766174,
+          "object_angle_deg": 0.35243767499923706,
+          "pusher_position_px": 0.4184263050556183,
+          "persistence_object_px": 3.4358112812042236,
+          "persistence_angle_deg": 1.2847282886505127
+        }
+      },
+      "10": {
+        "all": {
+          "n": 24895,
+          "object_position_px": 2.210932970046997,
+          "object_angle_deg": 0.9453868865966797,
+          "pusher_position_px": 0.8337674736976624,
+          "persistence_object_px": 3.2849981784820557,
+          "persistence_angle_deg": 1.3286070823669434
+        },
+        "moving": {
+          "n": 5170,
+          "object_position_px": 4.370364665985107,
+          "object_angle_deg": 2.4884796142578125,
+          "pusher_position_px": 0.7294513583183289,
+          "persistence_object_px": 15.378762245178223,
+          "persistence_angle_deg": 6.1831865310668945
+        }
+      },
+      "50": {
+        "all": {
+          "n": 24874,
+          "object_position_px": 11.698598861694336,
+          "object_angle_deg": 4.897721290588379,
+          "pusher_position_px": 0.47992992401123047,
+          "persistence_object_px": 22.498088836669922,
+          "persistence_angle_deg": 8.41796588897705
+        },
+        "moving": {
+          "n": 11621,
+          "object_position_px": 16.261640548706055,
+          "object_angle_deg": 7.9064226150512695,
+          "pusher_position_px": 0.4838375151157379,
+          "persistence_object_px": 48.02605056762695,
+          "persistence_angle_deg": 17.957408905029297
+        }
+      },
+      "100": {
+        "all": {
+          "n": 24836,
+          "object_position_px": 22.89543342590332,
+          "object_angle_deg": 9.51969051361084,
+          "pusher_position_px": 0.6759187579154968,
+          "persistence_object_px": 44.93593978881836,
+          "persistence_angle_deg": 17.007402420043945
+        },
+        "moving": {
+          "n": 17907,
+          "object_position_px": 25.41742706298828,
+          "object_angle_deg": 11.869431495666504,
+          "pusher_position_px": 0.6065584421157837,
+          "persistence_object_px": 62.304283142089844,
+          "persistence_angle_deg": 23.58057975769043
+        }
+      }
+    }
+  },
+  "jepa4": {
+    "checkpoint_step": 100000,
+    "metrics": {
+      "1": {
+        "all": {
+          "n": 24895,
+          "object_position_px": 0.10279308259487152,
+          "object_angle_deg": 0.052286650985479355,
+          "pusher_position_px": 0.26257413625717163,
+          "persistence_object_px": 0.3209333121776581,
+          "persistence_angle_deg": 0.13076919317245483
+        },
+        "moving": {
+          "n": 1592,
+          "object_position_px": 0.2848633825778961,
+          "object_angle_deg": 0.1542600840330124,
+          "pusher_position_px": 0.34713947772979736,
+          "persistence_object_px": 3.4358112812042236,
+          "persistence_angle_deg": 1.2847282886505127
+        }
+      },
+      "10": {
+        "all": {
+          "n": 24895,
+          "object_position_px": 1.3903266191482544,
+          "object_angle_deg": 0.7018129825592041,
+          "pusher_position_px": 0.9909507632255554,
+          "persistence_object_px": 3.2849981784820557,
+          "persistence_angle_deg": 1.3286070823669434
+        },
+        "moving": {
+          "n": 5170,
+          "object_position_px": 3.666804313659668,
+          "object_angle_deg": 1.8135064840316772,
+          "pusher_position_px": 0.7034396529197693,
+          "persistence_object_px": 15.378762245178223,
+          "persistence_angle_deg": 6.1831865310668945
+        }
+      },
+      "50": {
+        "all": {
+          "n": 24874,
+          "object_position_px": 7.772828578948975,
+          "object_angle_deg": 4.124762535095215,
+          "pusher_position_px": 0.5100058913230896,
+          "persistence_object_px": 22.498088836669922,
+          "persistence_angle_deg": 8.41796588897705
+        },
+        "moving": {
+          "n": 11621,
+          "object_position_px": 12.941763877868652,
+          "object_angle_deg": 6.912282466888428,
+          "pusher_position_px": 0.5547173023223877,
+          "persistence_object_px": 48.02605056762695,
+          "persistence_angle_deg": 17.957408905029297
+        }
+      },
+      "100": {
+        "all": {
+          "n": 24836,
+          "object_position_px": 14.997315406799316,
+          "object_angle_deg": 7.951608657836914,
+          "pusher_position_px": 0.6085342764854431,
+          "persistence_object_px": 44.93593978881836,
+          "persistence_angle_deg": 17.007402420043945
+        },
+        "moving": {
+          "n": 17907,
+          "object_position_px": 18.62154197692871,
+          "object_angle_deg": 10.073707580566406,
+          "pusher_position_px": 0.6303139328956604,
+          "persistence_object_px": 62.304283142089844,
+          "persistence_angle_deg": 23.58057975769043
+        }
+      }
+    }
+  }
+}
