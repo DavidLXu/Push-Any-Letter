@@ -66,13 +66,14 @@
   try{const r=await fetch('experiments/act-episodes.json');if(!r.ok)throw Error(r.status);const next=await r.json();
    if(next.episodes.length!==6||next.episodes.some(e=>e.states.length!==e.steps+1||e.coverage.length!==e.states.length))throw Error('Invalid recorded episode data');
    data=next;cards=data.episodes.map(card);play.disabled=restart.disabled=slider.disabled=false;
-   status.textContent='Six verified test episodes · synchronized time · 4× by default. Playback pauses when the report is closed or off screen.';render();auto();
+   status.textContent='';status.hidden=true;render();auto();
   }catch(error){status.textContent='Episodes could not load. Close and reopen the report to retry, or download the recorded JSON below.';}finally{loading=false;}
  }
  play.addEventListener('click',()=>playing?stop():start());
  restart.addEventListener('click',()=>{step=0;render();start();});
  slider.addEventListener('input',()=>{stop();step=Number(slider.value);render();});
  pusherTrail.addEventListener('change',render);objectTrail.addEventListener('change',render);
+ report.addEventListener('il-version-change',()=>stop());
  report.addEventListener('toggle',()=>{if(report.open){load();resume();auto();}else{cancelAnimationFrame(raf);raf=0;last=0;}});
  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(!visible){cancelAnimationFrame(raf);raf=0;last=0;}else{auto();resume();}},{threshold:0}).observe(root);
  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);raf=0;last=0;}else resume();});
