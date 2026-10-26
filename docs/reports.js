@@ -14,24 +14,24 @@
     if (text !== undefined) node.textContent = text;
     return node;
   };
-  function chart(id, title, loss = false, split = '') {
+  function chart(id, title, mode, loss = false, split = '') {
     const mobile = matchMedia("(max-width:760px)").matches;
-    const width = mobile ? 360 : loss ? 1000 : 480, height = loss ? 300 : 270;
+    const width = mobile ? 360 : 480, height = loss ? 300 : 270;
     const box = {left:48, right:16, top:25, bottom:40};
     const w = width-box.left-box.right, h = height-box.top-box.bottom;
     const svg = svgElement('svg', {viewBox:`0 0 ${width} ${height}`, role:'img', 'aria-label':title});
     svg.append(svgElement('title', {}, title));
     const x = v => box.left+v/100000*w;
-    const y = v => box.top+(loss ? (2-Math.log10(Math.max(v,1e-4)))/6 : (100-v)/100)*h;
-    for (const value of loss ? [100,1,.01,.0001] : [0,25,50,75,100]) {
+    const y = v => box.top+(loss ? (3-Math.log10(Math.max(v,1e-4)))/7 : (100-v)/100)*h;
+    for (const value of loss ? [1000,10,.1,.001,.0001] : [0,25,50,75,100]) {
       svg.append(svgElement('line', {x1:box.left,x2:width-box.right,y1:y(value),y2:y(value),class:'grid'}));
-      svg.append(svgElement('text', {x:box.left-9,y:y(value)+3,'text-anchor':'end'}, loss ? ({100:'10²',1:'10⁰','0.01':'10⁻²','0.0001':'10⁻⁴'}[value]) : value+'%'));
+      svg.append(svgElement('text', {x:box.left-9,y:y(value)+3,'text-anchor':'end'}, loss ? ({1000:'10³',10:'10¹','0.1':'10⁻¹','0.001':'10⁻³','0.0001':'10⁻⁴'}[value]) : value+'%'));
     }
     for (const value of mobile ? [0,25000,50000,75000,100000] : [0,20000,40000,60000,80000,100000]) {
       svg.append(svgElement('text', {x:x(value),y:height-22,'text-anchor':'middle'}, value ? `${value/1000}k` : '0'));
     }
     svg.append(svgElement('text', {x:box.left+w/2,y:height-3,'text-anchor':'middle'}, 'Optimizer updates'));
-    const series = data.series.map((s, i) => {
+    const series = data[mode].series.map((s, i) => {
       const line = svgElement('path', {class:'series-line',stroke:s.color});
       // Different dash patterns keep coincident zero-success lines identifiable.
       if (!loss) line.setAttribute('stroke-dasharray', ['2 5','8 4','12 3','none'][i]);
@@ -40,6 +40,13 @@
     });
     document.getElementById(id).replaceChildren(svg);
     return {svg,series,x,y,loss};
+  }
+  function buildCharts() {
+    charts = ['state','image'].flatMap(mode => [
+      chart(`${mode}-loss-chart`, `${mode} training losses; logarithmic scale`, mode, true),
+      chart(`${mode}-seen-chart`, `${mode} success on 52 seen training starts`, mode, false, 'train'),
+      chart(`${mode}-unseen-chart`, `${mode} success on 52 unseen-angle cases`, mode, false, 'test')
+    ]);
   }
   function draw(value) {
     progress = value; slider.value = value;
@@ -67,11 +74,16 @@
     if(loading)return loading;
     loading=(async()=>{
       try {
-        const response=await fetch('experiments/state-v1.json');if(!response.ok)throw Error(response.status);
-        data=await response.json();
-        charts=[chart('loss-chart','Training loss for four state policies; logarithmic scale',true),chart('seen-chart','Closed-loop success on 52 seen training starts',false,'train'),chart('unseen-chart','Closed-loop success on 52 unseen-angle test cases',false,'test')];
+        const modes = ['state','image'];
+        const loaded = await Promise.all(modes.map(async mode => {
+          const response = await fetch(`experiments/${mode}-v1.json`);
+          if (!response.ok) throw Error(response.status);
+          return response.json();
+        }));
+        data = Object.fromEntries(modes.map((mode,i)=>[mode,loaded[i]]));
+        buildCharts();
         slider.disabled=play.disabled=final.disabled=false;draw(100000);
-        message.textContent='Recorded measurements · one training seed · drag the timeline or replay the curves.';
+        message.textContent='State + image · recorded measurements · one seed · drag the shared timeline or replay all six curves.';
         maybeAnimate();
       } catch(error) {message.textContent='Interactive curves could not load. Use the recorded metrics and PDF downloads below.';loading=null;}
     })();return loading;
@@ -83,7 +95,7 @@
   reduced.addEventListener('change',()=>{if(reduced.matches && data){stop();draw(100000);}});
   matchMedia('(max-width:760px)').addEventListener('change',()=>{
     if(!data)return;
-    charts=[chart('loss-chart','Training loss for four state policies; logarithmic scale',true),chart('seen-chart','Closed-loop success on 52 seen training starts',false,'train'),chart('unseen-chart','Closed-loop success on 52 unseen-angle test cases',false,'test')];
+    buildCharts();
     draw(progress);
   });
   if(report.open)load();
